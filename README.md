@@ -16,33 +16,48 @@ Supermind_updated is a backend project designed to provide robust and scalable s
 
 1. Clone the repository:
       ```bash
-      git clone https://github.com/yourusername/supermind_updated.git
+      git clone https://github.com/Prayag2003/ethereum-bots-supermind-hackathon
       ```
 2. Navigate to the project directory:
       ```bash
-      cd supermind_updated
+      cd ethereum-bots-supermind-hackathon
       ```
 3. Install dependencies:
       ```bash
-      npm install
+      cd backend
+      python -m venv .venv
+      ```
+4. Activate the virtual environment:
+      ```bash
+        For Windows: source .venv/Scripts/activate
+        For MacOS/Linux: source .venv/bin/activate
       ```
 
 ## Usage
 
 1. Start the development server:
+   Inside the Backend folder, run the following command:
       ```bash
-      npm run dev
+      cd /src
+      python main.py
       ```
-2. Access the API at `http://localhost:3000`
+2. Access the API at `http://localhost:8000/query`
 
-## Contributing
+### Parameters
 
-We welcome contributions! Please read our [contributing guidelines](CONTRIBUTING.md) for more details.
+**JSON Body:**
 
-## License
+```json
+{
+	"post_type": "Video",
+	"query": "What is the increase in number of likes of images than videos?"
+}
+```
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+### Response
 
-## Contact
-
-For any inquiries, please contact us at [email@example.com](mailto:email@example.com).
+```json
+{
+	"report": "Based on the data provided, the average number of Likes for videos is 524.26, while the average number of Likes for images is 456.85. This results in a percentage difference of 14.76%, indicating that videos receive, on average, 14.76% more Likes compared to images.\n\nInsights:\n- Videos tend to receive a higher average number of Likes compared to images, with a noticeable difference of 14.76%.\n- This suggests that the audience is more engaged with video content, as indicated by the higher average Likes for videos.\n- To enhance engagement further, focusing on video content creation and optimization may be beneficial, given the higher Engagement Rate for videos as well.\n\nOverall, videos appear to be more effective in garnering Likes and engagement compared to images, highlighting the importance of incorporating video content strategies in social media posts."
+}
+```
