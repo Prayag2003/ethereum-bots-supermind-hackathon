@@ -1,0 +1,8 @@
+ipykernel
+pandas
+cassandra-driver
+openai
+loguru
+python-dotenv
+fastapi
+uvicorn
