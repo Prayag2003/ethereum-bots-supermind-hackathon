@@ -11,6 +11,7 @@ Supermind_updated is a backend project designed to provide robust and scalable s
 - Data validation and error handling
 - Integration with third-party services
 - Comprehensive logging and monitoring
+- Deployed backend on AWS EC2
 
 ## Installation
 
@@ -41,7 +42,7 @@ Supermind_updated is a backend project designed to provide robust and scalable s
       cd /src
       python main.py
       ```
-2. Access the API at `http://localhost:8000/query`
+2. Access the API at `http://65.0.124.242:8000/query`
 
 ### Parameters
 
