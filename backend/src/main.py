@@ -8,11 +8,21 @@ from loguru import logger
 from dotenv import load_dotenv
 import pandas as pd
 
+from fastapi.middleware.cors import CORSMiddleware
+
 load_dotenv()
 
 logger.add("app.log", rotation="10 MB")
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class PostType(Enum):
     Video = "Video"
