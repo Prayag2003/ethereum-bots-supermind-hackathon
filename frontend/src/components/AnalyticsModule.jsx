@@ -9,14 +9,20 @@ export default function AnalyticsModule() {
 	const handleQuery = async (postType, query) => {
 		setIsLoading(true);
 		try {
-			const res = await fetch("http://localhost:8000/query", {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({
-					post_type: postType,
-					query,
-				}),
-			});
+			const res = await fetch(
+				"http://65.0.124.242:8000/query",
+				{
+					method: "POST",
+					headers: {
+						"Content-Type":
+							"application/json",
+					},
+					body: JSON.stringify({
+						post_type: postType,
+						query,
+					}),
+				}
+			);
 			const data = await res.json();
 			setChatHistory((prev) => [
 				...prev,
