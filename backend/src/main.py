@@ -12,8 +12,6 @@ from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
-logger.add("app.log", rotation="10 MB")
-
 app = FastAPI()
 
 app.add_middleware(
