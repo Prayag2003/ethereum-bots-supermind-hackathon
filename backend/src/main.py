@@ -39,27 +39,22 @@ async def analyze_data(request: AnalysisRequest):
         logger.info("=== Starting new analysis request ===")
         logger.info(f"Processing request - Post type: {request.post_type.value}, Query: {request.query}")
         
-        # Fetch data from Astra DB
         logger.info("Fetching data from Astra DB...")
         data = fetch_data_from_astra_db()
         
-        # Check if the fetched data is a DataFrame
         if not isinstance(data, pd.DataFrame):
             logger.error("Fetched data is not a DataFrame.")
             return {"error": "Unexpected data format received from database."}, 500
 
-        # Check if the DataFrame is empty
         if data.empty:
             logger.warning("Fetched data is empty.")
             return {"message": "No data available for analysis."}
 
         logger.debug(f"Fetched data size: {len(data)} records")
 
-        # Start analysis
         logger.info(f"Starting analysis for post type: {request.post_type.value}")
         analysis_metrics = analyze_post_type(data, request.post_type.value)
 
-        # Handle case where analysis returns a string message
         if isinstance(analysis_metrics, str):
             logger.info(f"Analysis returned message: {analysis_metrics}")
             return {"message": analysis_metrics}
