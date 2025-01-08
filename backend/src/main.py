@@ -18,7 +18,7 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  
+    allow_origins=["https://vercel.com/prayag2003s-projects/ethereum-bots-supermind-hackathon"],  
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -46,6 +46,7 @@ async def analyze_data(request: AnalysisRequest):
             logger.error("Fetched data is not a DataFrame.")
             return {"error": "Unexpected data format received from database."}, 500
 
+        # Check if the DataFrame is empty
         if data.empty:
             logger.warning("Fetched data is empty.")
             return {"message": "No data available for analysis."}
@@ -61,7 +62,6 @@ async def analyze_data(request: AnalysisRequest):
 
         logger.debug(f"Analysis metrics: {analysis_metrics}")
 
-        # Generate analysis report
         logger.info("Generating analysis report...")
         report = generate_analysis_report(request.post_type.value, analysis_metrics, request.query)
         logger.info("Analysis report generated successfully")
