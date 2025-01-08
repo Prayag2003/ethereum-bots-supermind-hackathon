@@ -3,7 +3,7 @@ from loguru import logger
 def analyze_post_type(data, post_type):
     """Analyze metrics for a specific post type.""" 
 
-    logger.info("Data: ", data)
+    # print("Data: ", data)
 
     # logger.info(f"Analyzing data for post type: {post_type}")
     if post_type not in data["Post_Type"].unique():
