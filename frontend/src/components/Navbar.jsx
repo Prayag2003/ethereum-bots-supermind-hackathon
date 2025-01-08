@@ -48,17 +48,20 @@ export default function Navbar() {
 						</span>
 					</Link>
 
-					<button className='flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-slate-800/50 transition-all duration-300 group'>
+					<Link
+						to='/profile'
+						className='flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-slate-800/50 transition-all duration-300 group'
+					>
 						<FaUser className='text-slate-400 group-hover:text-indigo-400 transition-colors' />
 						<span className='text-slate-300 group-hover:text-white transition-colors'>
 							Profile
 						</span>
-					</button>
+					</Link>
 				</div>
 
 				{/* Optional: Add a primary action button */}
 				<Link
-					to='/dashboard'
+					to='/chat'
 					className='bg-gradient-to-r from-indigo-500 to-fuchsia-500 hover:from-indigo-600 hover:to-fuchsia-600 px-6 py-2 rounded-lg font-medium shadow-lg hover:shadow-indigo-500/25 transition-all duration-300'
 				>
 					Get Started

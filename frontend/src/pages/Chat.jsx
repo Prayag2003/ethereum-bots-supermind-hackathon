@@ -1,8 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { FaRobot, FaUser, FaPaperPlane, FaSpinner } from "react-icons/fa";
 
-const apiUrl = "13.233.24.67" || "http://localhost:8000";
-
 export default function Chat() {
 	const [postType, setPostType] = useState("Video");
 	const [query, setQuery] = useState("");
@@ -36,7 +34,8 @@ export default function Chat() {
 		setIsLoading(true);
 
 		try {
-			const endPoint = "http://13.233.24.67:8000/query"; // Ensure you include the full URL
+			const endPoint = "http://13.233.24.67:8000/query";
+
 			const res = await fetch(endPoint, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
@@ -46,7 +45,6 @@ export default function Chat() {
 				}),
 			});
 
-			// Check for successful response
 			if (!res.ok) {
 				throw new Error(
 					`Failed to fetch: ${res.statusText}`
@@ -55,7 +53,6 @@ export default function Chat() {
 
 			const data = await res.json();
 
-			// Check if the report key exists in the response data
 			if (!data.report) {
 				throw new Error(
 					"Invalid response format: Missing 'report' field."
@@ -71,7 +68,6 @@ export default function Chat() {
 
 			setMessages((prev) => [...prev, botMessage]);
 		} catch (error) {
-			// Log detailed error message
 			console.error("Error:", error);
 
 			const errorMessage = {
@@ -86,55 +82,6 @@ export default function Chat() {
 		setIsLoading(false);
 	};
 
-	// const handleSubmit = async (e) => {
-	// 	e.preventDefault();
-	// 	if (!query.trim()) return;
-
-	// 	const userMessage = {
-	// 		id: Date.now(),
-	// 		type: "user",
-	// 		content: query,
-	// 		postType: postType,
-	// 		timestamp: new Date(),
-	// 	};
-
-	// 	setMessages((prev) => [...prev, userMessage]);
-	// 	setQuery("");
-	// 	setIsLoading(true);
-
-	// 	try {
-	// 		const endPoint = "13.233.24.67:8000/query";
-	// 		const res = await fetch(endPoint, {
-	// 			method: "POST",
-	// 			headers: { "Content-Type": "application/json" },
-	// 			body: JSON.stringify({
-	// 				post_type: postType,
-	// 				query: userMessage.content,
-	// 			}),
-	// 		});
-	// 		const data = await res.json();
-
-	// 		const botMessage = {
-	// 			id: Date.now(),
-	// 			type: "assistant",
-	// 			content: data.report,
-	// 			timestamp: new Date(),
-	// 		};
-
-	// 		setMessages((prev) => [...prev, botMessage]);
-	// 	} catch (error) {
-	// 		const errorMessage = {
-	// 			id: Date.now(),
-	// 			type: "error",
-	// 			content: "I apologize, but I encountered an error while processing your request. Please try again.",
-	// 			timestamp: new Date(),
-	// 		};
-	// 		setMessages((prev) => [...prev, errorMessage]);
-	// 	}
-
-	// 	setIsLoading(false);
-	// };
-
 	const formatTime = (date) => {
 		return date.toLocaleTimeString("en-US", {
 			hour: "numeric",
@@ -143,7 +90,6 @@ export default function Chat() {
 		});
 	};
 
-	// Loading animation dots
 	const LoadingDots = () => (
 		<div className='flex space-x-1.5 items-center h-6'>
 			<div
