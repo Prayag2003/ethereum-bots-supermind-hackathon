@@ -1,82 +1,72 @@
-// src/components/Navbar.jsx
 import { Link } from "react-router-dom";
-import { FaChartBar, FaHome, FaCog, FaComment } from "react-icons/fa";
+import { FaChartBar, FaHome, FaCog, FaComment, FaUser } from "react-icons/fa";
 
 export default function Navbar() {
 	return (
-		<nav className='bg-gray-800 text-white p-4 shadow-lg'>
+		<nav className='bg-slate-900/50 backdrop-blur-lg border-b border-slate-800 text-white py-5 px-6 sticky top-0 z-50'>
 			<div className='max-w-7xl mx-auto flex justify-between items-center'>
 				<Link
 					to='/'
-					className='text-2xl font-bold flex items-center gap-2'
+					className='text-2xl font-bold flex items-center gap-3 hover:opacity-90 transition-opacity'
 				>
-					<FaChartBar className='text-blue-500' />
-					<span className='bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text'>
+					<div className='bg-gradient-to-r from-indigo-500 to-fuchsia-500 p-2 rounded-xl'>
+						<FaChartBar className='text-white' />
+					</div>
+					<span className='bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-400 text-transparent bg-clip-text'>
 						SuperMind Analytics
 					</span>
 				</Link>
-				<div className='flex gap-6'>
+
+				<div className='flex gap-8'>
 					<Link
 						to='/'
-						className='flex items-center gap-2 hover:text-blue-400 transition-colors'
+						className='flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-slate-800/50 transition-all duration-300 group'
 					>
-						<FaHome /> Home
+						<FaHome className='text-slate-400 group-hover:text-indigo-400 transition-colors' />
+						<span className='text-slate-300 group-hover:text-white transition-colors'>
+							Home
+						</span>
 					</Link>
+
 					<Link
 						to='/dashboard'
-						className='flex items-center gap-2 hover:text-blue-400 transition-colors'
+						className='flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-slate-800/50 transition-all duration-300 group'
 					>
-						<FaChartBar /> Dashboard
+						<FaChartBar className='text-slate-400 group-hover:text-indigo-400 transition-colors' />
+						<span className='text-slate-300 group-hover:text-white transition-colors'>
+							Dashboard
+						</span>
 					</Link>
+
 					<Link
 						to='/chat'
-						className='flex items-center gap-2 hover:text-blue-400 transition-colors'
+						className='flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-slate-800/50 transition-all duration-300 group'
 					>
-						<FaComment /> Chat
+						<FaComment className='text-slate-400 group-hover:text-indigo-400 transition-colors' />
+						<span className='text-slate-300 group-hover:text-white transition-colors'>
+							Chat
+						</span>
 					</Link>
-					<button className='flex items-center gap-2 hover:text-blue-400 transition-colors'>
-						<FaCog /> Settings
-					</button>
+
+					<Link
+						to='/profile'
+						className='flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-slate-800/50 transition-all duration-300 group'
+					>
+						<FaUser className='text-slate-400 group-hover:text-indigo-400 transition-colors' />
+						<span className='text-slate-300 group-hover:text-white transition-colors'>
+							Profile
+						</span>
+					</Link>
 				</div>
+
+				{/* Optional: Add a primary action button */}
+				<Link
+					to='/dashboard'
+					className='bg-gradient-to-r from-indigo-500 to-fuchsia-500 hover:from-indigo-600 hover:to-fuchsia-600 px-6 py-2 rounded-lg font-medium shadow-lg hover:shadow-indigo-500/25 transition-all duration-300'
+				>
+					Get Started
+				</Link>
 			</div>
 		</nav>
 	);
 }
-
-// import { Link } from "react-router-dom";
-// import { FaChartBar, FaHome, FaCog } from "react-icons/fa";
-
-// export default function Navbar() {
-// 	return (
-// 		<nav className='bg-gray-800 text-white p-4 shadow-lg'>
-// 			<div className='max-w-7xl mx-auto flex justify-between items-center'>
-// 				<Link
-// 					to='/'
-// 					className='text-2xl font-bold flex items-center gap-2'
-// 				>
-// 					<FaChartBar className='text-blue-500' />
-// 					<span className='bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text'>
-// 						SuperMind Analytics
-// 					</span>
-// 				</Link>
-// 				<div className='flex gap-6'>
-// 					<Link
-// 						to='/'
-// 						className='flex items-center gap-2 hover:text-blue-400 transition-colors'
-// 					>
-// 						<FaHome /> Home
-// 					</Link>
-// 					<Link
-// 						to='/dashboard'
-// 						className='flex items-center gap-2 hover:text-blue-400 transition-colors'
-// 					>
-// 						<FaChartBar /> Dashboard
-// 					</Link>
-// 					<button className='flex items-center gap-2 hover:text-blue-400 transition-colors'>
-// 						<FaCog /> Settings
-// 					</button>
-// 				</div>
-// 			</div>
-// 		</nav>
-// 	);
-// }
