@@ -22,7 +22,7 @@ class AstraDBConnection:
     def _initialize_connection(self):
         """Initialize the Astra DB connection."""
         try:
-            secure_bundle_path = os.getenv("ASTRA_DB_SECURE_CONNECT_BUNDLE")
+            secure_bundle_path = "src/secure-connect-new-db.zip"
             if not secure_bundle_path:
                 raise ValueError("Secure bundle path not provided")
             

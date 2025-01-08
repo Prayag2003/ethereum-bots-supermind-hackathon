@@ -12,20 +12,26 @@ export default function Footer() {
 				</div>
 				<div className='flex gap-6'>
 					<a
-						href='#'
+						href='https://www.github.com/Prayag2003'
 						className='text-slate-400 hover:text-indigo-400 transition-colors text-xl'
+						target='_blank'
+						rel='noopener noreferrer'
 					>
 						<FaGithub />
 					</a>
 					<a
-						href='#'
+						href='https://x.com/prayagbhatt2003'
 						className='text-slate-400 hover:text-indigo-400 transition-colors text-xl'
+						target='_blank'
+						rel='noopener noreferrer'
 					>
 						<FaTwitter />
 					</a>
 					<a
-						href='#'
+						href='https://www.linkedin.com/in/prayagbhatt2003'
 						className='text-slate-400 hover:text-indigo-400 transition-colors text-xl'
+						target='_blank'
+						rel='noopener noreferrer'
 					>
 						<FaLinkedin />
 					</a>

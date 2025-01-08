@@ -96,7 +96,7 @@ export default function Profile() {
 											? "border-red-500"
 											: "border-slate-700"
 									} focus:ring-2 focus:ring-indigo-500 focus:border-transparent`}
-									placeholder='John Doe'
+									placeholder='Ethereum Bots'
 								/>
 								{errors.name && (
 									<p className='text-red-500 text-sm mt-2'>
@@ -126,7 +126,7 @@ export default function Profile() {
 											? "border-red-500"
 											: "border-slate-700"
 									} focus:ring-2 focus:ring-indigo-500 focus:border-transparent`}
-									placeholder='john@example.com'
+									placeholder='ethereum-bots@botnet.com'
 								/>
 								{errors.email && (
 									<p className='text-red-500 text-sm mt-2'>
@@ -157,7 +157,7 @@ export default function Profile() {
 										? "border-red-500"
 										: "border-slate-700"
 								} focus:ring-2 focus:ring-indigo-500 focus:border-transparent`}
-								placeholder='Your Company Name'
+								placeholder='Ethereum Bots Inc.'
 							/>
 							{errors.company && (
 								<p className='text-red-500 text-sm mt-2'>
