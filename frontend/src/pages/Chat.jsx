@@ -1,8 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { FaRobot, FaUser, FaPaperPlane, FaSpinner } from "react-icons/fa";
 
-// import dotenv from "dotenv";
-// dotenv.config();
 const apiUrl = "13.233.24.67" || "http://localhost:8000";
 
 export default function Chat() {
@@ -38,9 +36,8 @@ export default function Chat() {
 		setIsLoading(true);
 
 		try {
-			const endPoint = `${apiUrl}:8000`;
-			console.log(endPoint);
-			const res = await fetch(endPoint + "/query", {
+			const endPoint = "http://13.233.24.67:8000/query"; // Ensure you include the full URL
+			const res = await fetch(endPoint, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
@@ -48,7 +45,22 @@ export default function Chat() {
 					query: userMessage.content,
 				}),
 			});
+
+			// Check for successful response
+			if (!res.ok) {
+				throw new Error(
+					`Failed to fetch: ${res.statusText}`
+				);
+			}
+
 			const data = await res.json();
+
+			// Check if the report key exists in the response data
+			if (!data.report) {
+				throw new Error(
+					"Invalid response format: Missing 'report' field."
+				);
+			}
 
 			const botMessage = {
 				id: Date.now(),
@@ -59,10 +71,13 @@ export default function Chat() {
 
 			setMessages((prev) => [...prev, botMessage]);
 		} catch (error) {
+			// Log detailed error message
+			console.error("Error:", error);
+
 			const errorMessage = {
 				id: Date.now(),
 				type: "error",
-				content: "I apologize, but I encountered an error while processing your request. Please try again.",
+				content: `I apologize, but I encountered an error while processing your request: ${error.message}. Please try again.`,
 				timestamp: new Date(),
 			};
 			setMessages((prev) => [...prev, errorMessage]);
@@ -70,6 +85,55 @@ export default function Chat() {
 
 		setIsLoading(false);
 	};
+
+	// const handleSubmit = async (e) => {
+	// 	e.preventDefault();
+	// 	if (!query.trim()) return;
+
+	// 	const userMessage = {
+	// 		id: Date.now(),
+	// 		type: "user",
+	// 		content: query,
+	// 		postType: postType,
+	// 		timestamp: new Date(),
+	// 	};
+
+	// 	setMessages((prev) => [...prev, userMessage]);
+	// 	setQuery("");
+	// 	setIsLoading(true);
+
+	// 	try {
+	// 		const endPoint = "13.233.24.67:8000/query";
+	// 		const res = await fetch(endPoint, {
+	// 			method: "POST",
+	// 			headers: { "Content-Type": "application/json" },
+	// 			body: JSON.stringify({
+	// 				post_type: postType,
+	// 				query: userMessage.content,
+	// 			}),
+	// 		});
+	// 		const data = await res.json();
+
+	// 		const botMessage = {
+	// 			id: Date.now(),
+	// 			type: "assistant",
+	// 			content: data.report,
+	// 			timestamp: new Date(),
+	// 		};
+
+	// 		setMessages((prev) => [...prev, botMessage]);
+	// 	} catch (error) {
+	// 		const errorMessage = {
+	// 			id: Date.now(),
+	// 			type: "error",
+	// 			content: "I apologize, but I encountered an error while processing your request. Please try again.",
+	// 			timestamp: new Date(),
+	// 		};
+	// 		setMessages((prev) => [...prev, errorMessage]);
+	// 	}
+
+	// 	setIsLoading(false);
+	// };
 
 	const formatTime = (date) => {
 		return date.toLocaleTimeString("en-US", {
@@ -132,7 +196,7 @@ export default function Chat() {
 			{/* Messages Container */}
 			<div className='flex-1 overflow-y-auto p-6 space-y-6 bg-gradient-to-b from-slate-900 to-slate-950'>
 				{messages.length === 0 && (
-					<div className='text-center text-slate-500 mt-8'>
+					<div className='text-center text-slate-500 mt-2'>
 						<div className='bg-slate-900/50 backdrop-blur-sm rounded-2xl p-8 max-w-md mx-auto border border-slate-800'>
 							<FaRobot className='text-5xl mx-auto mb-4 text-indigo-500' />
 							<h3 className='text-xl font-bold text-white mb-3'>
