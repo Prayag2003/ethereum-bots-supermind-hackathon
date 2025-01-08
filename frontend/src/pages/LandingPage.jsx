@@ -74,7 +74,7 @@ export default function LandingPage() {
 								decisions.
 							</p>
 							<Link
-								to='/dashboard'
+								to='/chat'
 								className='inline-flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 px-8 py-4 rounded-full text-lg font-semibold text-white transition-all duration-300 shadow-lg hover:shadow-indigo-500/25'
 							>
 								Get Started{" "}
