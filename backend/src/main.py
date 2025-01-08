@@ -77,7 +77,7 @@ async def analyze_data(request: AnalysisRequest):
         logger.error(f"Error processing request: {e}", exc_info=True)
         raise HTTPException(status_code=500, detail="An error occurred while processing the request.")
 
-if __name__ == "__main__":
-    import uvicorn
-    logger.info("Starting FastAPI server...")
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+# if __name__ == "__main__":
+#     import uvicorn
+#     logger.info("Starting FastAPI server...")
+#     uvicorn.run(app, host="0.0.0.0", port=8000)
