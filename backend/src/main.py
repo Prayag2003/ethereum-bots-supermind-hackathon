@@ -33,6 +33,10 @@ class AnalysisRequest(BaseModel):
     post_type: PostType
     query: str
 
+@app.get("/")
+async def root():
+    return {"message": "Welcome to the Ethereum Bots Supermind Hackathon API!"}
+
 @app.post("/query")
 async def analyze_data(request: AnalysisRequest):
     try:
@@ -76,4 +80,4 @@ async def analyze_data(request: AnalysisRequest):
 if __name__ == "__main__":
     import uvicorn
     logger.info("Starting FastAPI server...")
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8000)
