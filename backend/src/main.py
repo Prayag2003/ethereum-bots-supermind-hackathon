@@ -1,9 +1,9 @@
 from fastapi import FastAPI, HTTPException, Request
 from enum import Enum
 from pydantic import BaseModel
-from data_handler import fetch_data_from_astra_db
-from analysis import analyze_post_type
-from report_generator import generate_analysis_report
+from .data_handler import fetch_data_from_astra_db
+from .analysis import analyze_post_type
+from .report_generator import generate_analysis_report
 from loguru import logger
 from dotenv import load_dotenv
 import pandas as pd
