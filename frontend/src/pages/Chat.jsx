@@ -109,12 +109,12 @@ export default function Chat() {
 	);
 
 	return (
-		<div className='flex flex-col h-[calc(100vh-8rem)] max-w-6xl mx-auto px-4'>
+		<div className='flex flex-col max-w-5xl mx-auto px-4'>
 			{/* Chat Header */}
-			<div className='flex items-center justify-between p-6 border-b border-slate-800 bg-slate-900/50 backdrop-blur-sm rounded-t-2xl'>
+			<div className='flex items-center justify-between p-6 border-b border-indigo-800 bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-900 backdrop-blur-sm rounded-t-2xl'>
 				<div className='flex items-center gap-4'>
-					<div className='bg-indigo-500/10 p-3 rounded-xl'>
-						<FaRobot className='text-indigo-500 text-xl' />
+					<div className='bg-indigo-100/10 p-3 rounded-xl border-white'>
+						<FaRobot className='text-white text-xl' />
 					</div>
 					<div className='flex flex-col px-10'>
 						<h2 className='text-xl font-bold text-white'>
@@ -132,7 +132,7 @@ export default function Chat() {
 					onChange={(e) =>
 						setPostType(e.target.value)
 					}
-					className='bg-slate-800 text-white px-4 py-2 rounded-xl border border-slate-700 focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
+					className='bg-slate-800 text-white px-6 py-2 rounded-xl border border-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
 				>
 					<option value='Video'>Video</option>
 					<option value='Image'>Image</option>
