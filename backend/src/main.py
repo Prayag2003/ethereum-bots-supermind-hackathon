@@ -7,18 +7,16 @@ from report_generator import generate_analysis_report
 from loguru import logger
 from dotenv import load_dotenv
 import pandas as pd
-from mangum import Mangum
 
 from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
 app = FastAPI()
-handler = Mangum(app)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["https://vercel.com/prayag2003s-projects/ethereum-bots-supermind-hackathon"],  
+    allow_origins=["https://ethereum-bots-supermind-hackathon.vercel.app"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
