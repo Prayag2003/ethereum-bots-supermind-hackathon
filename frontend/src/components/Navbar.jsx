@@ -13,7 +13,7 @@ export default function Navbar() {
 						<FaChartBar className='text-white' />
 					</div>
 					<span className='bg-gradient-to-r from-indigo-400 via-violet-400 to-fuchsia-400 text-transparent bg-clip-text'>
-						SuperMind Analytics
+						SuperMind
 					</span>
 				</Link>
 

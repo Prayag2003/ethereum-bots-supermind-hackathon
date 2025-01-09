@@ -1,3 +1,4 @@
+import React from "react";
 import { Link } from "react-router-dom";
 import {
 	FaChartLine,
@@ -15,11 +16,55 @@ export default function LandingPage() {
 			{
 				label: "Engagement Growth",
 				data: [30, 45, 57, 75, 85, 95],
-				backgroundColor: "rgba(99, 102, 241, 0.5)",
-				borderColor: "rgb(99, 102, 241)",
+				backgroundColor: [
+					"rgba(129, 140, 248, 0.7)",
+					"rgba(167, 139, 250, 0.7)",
+					"rgba(192, 132, 252, 0.7)",
+					"rgba(216, 180, 254, 0.7)",
+					"rgba(240, 171, 252, 0.7)",
+					"rgba(249, 168, 212, 0.7)",
+				],
+				borderColor: [
+					"rgb(129, 140, 248)",
+					"rgb(167, 139, 250)",
+					"rgb(192, 132, 252)",
+					"rgb(216, 180, 254)",
+					"rgb(240, 171, 252)",
+					"rgb(249, 168, 212)",
+				],
 				borderWidth: 2,
+				borderRadius: 8,
 			},
 		],
+	};
+
+	const chartOptions = {
+		scales: {
+			y: {
+				beginAtZero: true,
+				grid: {
+					color: "rgba(148, 163, 184, 0.1)",
+				},
+				ticks: {
+					color: "rgb(148, 163, 184)",
+				},
+			},
+			x: {
+				grid: {
+					color: "rgba(148, 163, 184, 0.1)",
+				},
+				ticks: {
+					color: "rgb(148, 163, 184)",
+				},
+			},
+		},
+		plugins: {
+			legend: {
+				labels: {
+					color: "rgb(148, 163, 184)",
+				},
+			},
+		},
 	};
 
 	const features = [
@@ -53,8 +98,10 @@ export default function LandingPage() {
 
 	return (
 		<div className='min-h-screen bg-slate-950'>
-			{/* Hero Section */}
-			<section className='relative py-24 px-6 overflow-hidden'>
+			{/* Modern Navbar */}
+
+			{/* Hero Section - adjusted padding for fixed navbar */}
+			<section className='relative pt-20 pb-20 px-6 overflow-hidden'>
 				<div className='absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-violet-500/10 to-fuchsia-500/10' />
 				<div className='max-w-7xl mx-auto relative'>
 					<div className='grid grid-cols-1 lg:grid-cols-2 gap-16 items-center'>
@@ -75,16 +122,19 @@ export default function LandingPage() {
 							</p>
 							<Link
 								to='/chat'
-								className='inline-flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 px-8 py-4 rounded-full text-lg font-semibold text-white transition-all duration-300 shadow-lg hover:shadow-indigo-500/25'
+								className='inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-fuchsia-500 hover:from-indigo-600 hover:to-fuchsia-600 px-8 py-4 rounded-full text-lg font-semibold text-white transition-all duration-300 shadow-lg hover:shadow-indigo-500/25'
 							>
 								Get Started{" "}
 								<FaArrowRight className='transition-transform group-hover:translate-x-1' />
 							</Link>
 						</div>
-						<div className='bg-slate-900/50 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-slate-800'>
+						<div className='bg-gradient-to-r from-indigo-900 to-fuchsia-900 bg-slate-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-slate-800'>
 							<Bar
 								data={
 									demoChartData
+								}
+								options={
+									chartOptions
 								}
 							/>
 						</div>
@@ -92,6 +142,7 @@ export default function LandingPage() {
 				</div>
 			</section>
 
+			{/* Rest of the sections remain the same */}
 			{/* Features Section */}
 			<section className='py-24 px-6 relative'>
 				<div className='max-w-7xl mx-auto'>
@@ -106,9 +157,9 @@ export default function LandingPage() {
 									key={
 										index
 									}
-									className='group bg-slate-900/50 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-slate-800 hover:border-slate-700 transition-all duration-300 hover:transform hover:-translate-y-1'
+									className='group bg-slate-900/50 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-slate-800 transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl hover:bg-slate-800 hover:border-slate-200'
 								>
-									<div className='mb-6'>
+									<div className='mb-6 transition-transform duration-300 group-hover:scale-110'>
 										{
 											feature.icon
 										}
