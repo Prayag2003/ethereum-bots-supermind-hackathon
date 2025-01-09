@@ -62,7 +62,7 @@ export default function Navbar() {
 				{/* Optional: Add a primary action button */}
 				<Link
 					to='/chat'
-					className='bg-gradient-to-r from-indigo-500 to-fuchsia-500 hover:from-indigo-600 hover:to-fuchsia-600 px-6 py-2 rounded-lg font-medium shadow-lg hover:shadow-indigo-500/25 transition-all duration-300'
+					className='bg-gradient-to-r from-indigo-700 to-fuchsia-800 hover:from-indigo-600 hover:to-fuchsia-600 px-6 py-2 rounded-lg font-medium shadow-lg hover:shadow-indigo-500/25 transition-all duration-300'
 				>
 					Get Started
 				</Link>

@@ -122,13 +122,13 @@ export default function LandingPage() {
 							</p>
 							<Link
 								to='/chat'
-								className='inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-fuchsia-500 hover:from-indigo-600 hover:to-fuchsia-600 px-8 py-4 rounded-full text-lg font-semibold text-white transition-all duration-300 shadow-lg hover:shadow-indigo-500/25'
+								className='inline-flex items-center gap-2 bg-gradient-to-r from-indigo-700 to-fuchsia-800 hover:from-indigo-700 hover:to-fuchsia-600 px-8 py-4 rounded-full text-lg font-semibold text-white transition-all duration-300 shadow-lg hover:shadow-indigo-500/25'
 							>
 								Get Started{" "}
 								<FaArrowRight className='transition-transform group-hover:translate-x-1' />
 							</Link>
 						</div>
-						<div className='bg-gradient-to-r from-indigo-900 to-fuchsia-900 bg-slate-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-slate-800'>
+						<div className='bg-gradient-to-r from-indigo-900  to-fuchsia-900 bg-slate-800/50 backdrop-blur-sm p-8 rounded-2xl shadow-xl border border-slate-800'>
 							<Bar
 								data={
 									demoChartData

@@ -2,12 +2,50 @@ import { useState, useRef, useEffect } from "react";
 import { FaRobot, FaUser, FaPaperPlane, FaSpinner } from "react-icons/fa";
 
 export default function Chat() {
-	const [postType, setPostType] = useState("Video");
+	const [postType, setPostType] = useState(() => {
+		// Initialize postType from localStorage or default to "Video"
+		return localStorage.getItem("supermind_postType") || "Video";
+	});
+
 	const [query, setQuery] = useState("");
-	const [messages, setMessages] = useState([]);
+	const [messages, setMessages] = useState(() => {
+		// Initialize messages from localStorage or empty array
+		try {
+			const savedMessages =
+				localStorage.getItem("supermind_messages");
+			return savedMessages ? JSON.parse(savedMessages) : [];
+		} catch (error) {
+			console.error(
+				"Error loading messages from localStorage:",
+				error
+			);
+			return [];
+		}
+	});
+
 	const [isLoading, setIsLoading] = useState(false);
 	const messagesEndRef = useRef(null);
 	const inputRef = useRef(null);
+
+	// Save messages to localStorage whenever they change
+	useEffect(() => {
+		try {
+			localStorage.setItem(
+				"supermind_messages",
+				JSON.stringify(messages)
+			);
+		} catch (error) {
+			console.error(
+				"Error saving messages to localStorage:",
+				error
+			);
+		}
+	}, [messages]);
+
+	// Save postType to localStorage whenever it changes
+	useEffect(() => {
+		localStorage.setItem("supermind_postType", postType);
+	}, [postType]);
 
 	const scrollToBottom = () => {
 		messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -26,7 +64,7 @@ export default function Chat() {
 			type: "user",
 			content: query,
 			postType: postType,
-			timestamp: new Date(),
+			timestamp: new Date().toISOString(), // Store as ISO string for proper serialization
 		};
 
 		setMessages((prev) => [...prev, userMessage]);
@@ -64,7 +102,7 @@ export default function Chat() {
 				id: Date.now(),
 				type: "assistant",
 				content: data.report,
-				timestamp: new Date(),
+				timestamp: new Date().toISOString(), // Store as ISO string for proper serialization
 			};
 
 			setMessages((prev) => [...prev, botMessage]);
@@ -75,7 +113,7 @@ export default function Chat() {
 				id: Date.now(),
 				type: "error",
 				content: `I apologize, but I encountered an error while processing your request: ${error.message}. Please try again.`,
-				timestamp: new Date(),
+				timestamp: new Date().toISOString(), // Store as ISO string for proper serialization
 			};
 			setMessages((prev) => [...prev, errorMessage]);
 		}
@@ -83,7 +121,15 @@ export default function Chat() {
 		setIsLoading(false);
 	};
 
-	const formatTime = (date) => {
+	// Clear chat history
+	const clearChat = () => {
+		setMessages([]);
+		localStorage.removeItem("supermind_messages");
+	};
+
+	const formatTime = (dateString) => {
+		// Parse ISO string back to Date object
+		const date = new Date(dateString);
 		return date.toLocaleTimeString("en-US", {
 			hour: "numeric",
 			minute: "numeric",
@@ -127,17 +173,33 @@ export default function Chat() {
 						</p>
 					</div>
 				</div>
-				<select
-					value={postType}
-					onChange={(e) =>
-						setPostType(e.target.value)
-					}
-					className='bg-slate-800 text-white px-6 py-2 rounded-xl border border-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
-				>
-					<option value='Video'>Video</option>
-					<option value='Image'>Image</option>
-					<option value='Link'>Link</option>
-				</select>
+				<div className='flex items-center gap-4'>
+					<button
+						onClick={clearChat}
+						className='px-4 py-2 text-sm text-red-400 hover:text-red-300 transition-colors'
+					>
+						Clear Chat
+					</button>
+					<select
+						value={postType}
+						onChange={(e) =>
+							setPostType(
+								e.target.value
+							)
+						}
+						className='bg-slate-800 text-white px-6 py-2 rounded-xl border border-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:border-transparent'
+					>
+						<option value='Video'>
+							Video
+						</option>
+						<option value='Image'>
+							Image
+						</option>
+						<option value='Link'>
+							Link
+						</option>
+					</select>
+				</div>
 			</div>
 
 			{/* Messages Container */}
