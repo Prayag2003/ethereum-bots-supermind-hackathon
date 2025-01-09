@@ -34,7 +34,8 @@ export default function Chat() {
 		setIsLoading(true);
 
 		try {
-			const endPoint = "http://13.233.24.67:8000/query";
+			const endPoint =
+				"https://ethereum-bots-supermind-hackathon.onrender.com/query";
 
 			const res = await fetch(endPoint, {
 				method: "POST",
