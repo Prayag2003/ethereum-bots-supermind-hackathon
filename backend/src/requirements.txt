@@ -4,5 +4,6 @@ cassandra-driver
 openai
 loguru
 python-dotenv
-fastapi
+fastapi==0.99.0
 uvicorn
+mangum
